@@ -1,0 +1,2514 @@
+{
+  "openapi": "3.0.0",
+  "paths": {
+    "/auth/regisztracio": {
+      "post": {
+        "description": "Új felhasználó regisztrálása (publikus végpont).",
+        "operationId": "AuthController_regisztracio",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterSzemelyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Felhasználó sikeresen regisztrálva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          }
+        },
+        "summary": "Felhasználó regisztráció",
+        "tags": [
+          "Authentikáció"
+        ]
+      }
+    },
+    "/auth/bejelentkezes": {
+      "post": {
+        "description": "Bejelentkezés email vagy felhasználónév és jelszó segítségével (publikus végpont).",
+        "operationId": "AuthController_bejelentkezes",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginSzemelyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sikeres bejelentkezés, JWT token visszaadva.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                },
+                "example": {
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIn..."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Hibás email/felhasználónév vagy jelszó"
+          }
+        },
+        "summary": "Felhasználó bejelentkezés",
+        "tags": [
+          "Authentikáció"
+        ]
+      }
+    },
+    "/auth/tokenfrissites": {
+      "get": {
+        "description": "Bejelentkezett felhasználó a token lejárta előtt meg tudja azt újítani.",
+        "operationId": "AuthController_tokenFrissites",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Sikeres művelet, JWT token visszaadva.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponseDto"
+                },
+                "example": {
+                  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsIn..."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen token"
+          }
+        },
+        "summary": "JWT frissítése",
+        "tags": [
+          "Authentikáció"
+        ]
+      }
+    },
+    "/auth/jelszomodositas": {
+      "post": {
+        "description": "Belépési adatokkal azonosított jelszómódosítás.",
+        "operationId": "AuthController_jelszoModositas",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ModifyPasswordDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Sikeres jelszómódosítás, Személy visszaadva.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen felhasználó"
+          }
+        },
+        "summary": "Jelszó módosítása",
+        "tags": [
+          "Authentikáció"
+        ]
+      }
+    },
+    "/szemelyek": {
+      "get": {
+        "description": "Lekéri az összes személyt, szűrhető a megadott paraméterek alapján.",
+        "operationId": "SzemelyekController_findAll",
+        "parameters": [
+          {
+            "name": "szemely_email",
+            "required": false,
+            "in": "query",
+            "description": "Szűrő az email címre",
+            "schema": {}
+          },
+          {
+            "name": "szemely_keresztnev",
+            "required": false,
+            "in": "query",
+            "description": "Szűrő a keresztnévre",
+            "schema": {}
+          },
+          {
+            "name": "szemely_vezeteknev",
+            "required": false,
+            "in": "query",
+            "description": "Szűrő a vezetéknévre",
+            "schema": {}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személyek sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Szemely"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin vagy user jogosultság"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Összes személy lekérdezése",
+        "tags": [
+          "Személyek"
+        ]
+      },
+      "post": {
+        "description": "Új személy regisztrálása admin jogosultsággal.",
+        "operationId": "SzemelyekController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSzemelyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Személy sikeresen létrehozva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Új személy létrehozása",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/{id}": {
+      "get": {
+        "description": "Lekéri egy adott személy adatait az azonosító alapján.",
+        "operationId": "SzemelyekController_findID",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személy sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin vagy user jogosultság"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy lekérdezése ID alapján",
+        "tags": [
+          "Személyek"
+        ]
+      },
+      "patch": {
+        "description": "Meglévő személy adatainak módosítása admin jogosultsággal.",
+        "operationId": "SzemelyekController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateSzemelyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Személy sikeresen módosítva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy módosítása",
+        "tags": [
+          "Személyek"
+        ]
+      },
+      "delete": {
+        "description": "Meglévő személy törlése admin jogosultsággal.",
+        "operationId": "SzemelyekController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személy sikeresen törölve"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy törlése",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/felhasznalonev/{id}": {
+      "get": {
+        "description": "Lekéri egy adott személy adatait a felhasználónév alapján.",
+        "operationId": "SzemelyekController_findFelhasznaloinev",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személy sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin vagy user jogosultság"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy lekérdezése felhasználónév alapján",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/email/{id}": {
+      "get": {
+        "description": "Lekéri egy adott személy adatait az email cím alapján.",
+        "operationId": "SzemelyekController_findEmail",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személy sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin vagy user jogosultság"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy lekérdezése email alapján",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/profil/me": {
+      "get": {
+        "description": "Lekéri a bejelentkezett felhasználó adatait.",
+        "operationId": "SzemelyekController_findProfil",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Profil sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Nincs bejelentkezett felhasználó vagy érvénytelen JWT token"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Saját profil lekérdezése",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/test-validation": {
+      "post": {
+        "description": "Tesztelési célú végpont adatvalidációhoz (publikus).",
+        "operationId": "SzemelyekController_testValidation",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "description": "Teszt DTO (meghatározatlan struktúra)",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Object"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Validáció sikeres",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          }
+        },
+        "summary": "Teszt validáció",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/szemelyek/register": {
+      "post": {
+        "description": "Új személy regisztrálása (publikus végpont).",
+        "operationId": "SzemelyekController_register",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSzemelyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Személy sikeresen létrehozva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Szemely"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          }
+        },
+        "summary": "Személy regisztráció",
+        "tags": [
+          "Személyek"
+        ]
+      }
+    },
+    "/esemenyek": {
+      "get": {
+        "description": "Lekéri az összes eseményt admin jogosultsággal.",
+        "operationId": "EsemenyekController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Események sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Esemeny"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Összes esemény lekérdezése",
+        "tags": [
+          "Események"
+        ]
+      },
+      "post": {
+        "description": "Új esemény létrehozása admin jogosultsággal.",
+        "operationId": "EsemenyekController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateEsemenyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Esemény sikeresen létrehozva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Esemeny"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Új esemény létrehozása",
+        "tags": [
+          "Események"
+        ]
+      }
+    },
+    "/esemenyek/{id}": {
+      "get": {
+        "description": "Lekéri egy adott esemény adatait az azonosító alapján.",
+        "operationId": "EsemenyekController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Esemény sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Esemeny"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Esemény nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Esemény lekérdezése ID alapján",
+        "tags": [
+          "Események"
+        ]
+      },
+      "patch": {
+        "description": "Meglévő esemény módosítása admin jogosultsággal.",
+        "operationId": "EsemenyekController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateEsemenyDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Esemény sikeresen módosítva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Esemeny"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Esemény nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Esemény módosítása",
+        "tags": [
+          "Események"
+        ]
+      },
+      "delete": {
+        "description": "Meglévő esemény törlése admin jogosultsággal.",
+        "operationId": "EsemenyekController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Esemény sikeresen törölve"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Esemény nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Esemény törlése",
+        "tags": [
+          "Események"
+        ]
+      }
+    },
+    "/feliratkozasok": {
+      "get": {
+        "description": "Lekéri az összes feliratkozást (védett végpont).",
+        "operationId": "FeliratkozasokController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Feliratkozások sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feliratkozas"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Összes feliratkozás lekérdezése",
+        "tags": [
+          "Feliratkozások"
+        ]
+      },
+      "post": {
+        "description": "Új feliratkozás létrehozása autentikált felhasználó számára.",
+        "operationId": "FeliratkozasokController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateFeliratkozasDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Feliratkozas sikeresen létrehozva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feliratkozas"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Új feliratkozás létrehozása",
+        "tags": [
+          "Feliratkozások"
+        ]
+      }
+    },
+    "/feliratkozasok/{id}": {
+      "get": {
+        "description": "Lekéri egy adott feliratkozás adatait az azonosító alapján.",
+        "operationId": "FeliratkozasokController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feliratkozás sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Feliratkozas"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "404": {
+            "description": "Feliratkozás nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Feliratkozás lekérdezése ID alapján",
+        "tags": [
+          "Feliratkozások"
+        ]
+      },
+      "delete": {
+        "description": "Meglévő feliratkozás törlése autentikált felhasználó számára.",
+        "operationId": "FeliratkozasokController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Feliratkozás sikeresen törölve"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "404": {
+            "description": "Feliratkozás nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Feliratkozás törlése",
+        "tags": [
+          "Feliratkozások"
+        ]
+      }
+    },
+    "/feliratkozasok/szemely/{id}": {
+      "get": {
+        "description": "Lekéri egy adott személyhez tartozó összes eseményt.",
+        "operationId": "FeliratkozasokController_szemelyEsemenyei",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Események sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feliratkozas"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "404": {
+            "description": "Személy nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Személy eseményeinek lekérdezése",
+        "tags": [
+          "Feliratkozások"
+        ]
+      }
+    },
+    "/feliratkozasok/esemeny/{id}": {
+      "get": {
+        "description": "Lekéri egy adott eseményhez tartozó összes személyt.",
+        "operationId": "FeliratkozasokController_esemenySzemelyei",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Személyek sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Feliratkozas"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "404": {
+            "description": "Esemény nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Esemény személyeinek lekérdezése",
+        "tags": [
+          "Feliratkozások"
+        ]
+      }
+    },
+    "/hirek": {
+      "get": {
+        "description": "Lekéri az összes hírt (publikus végpont).",
+        "operationId": "HirekController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Hírek sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Hir"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Összes hír lekérdezése",
+        "tags": [
+          "Hírek"
+        ]
+      },
+      "post": {
+        "description": "Új hír létrehozása admin jogosultsággal.",
+        "operationId": "HirekController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateHirDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Hír sikeresen létrehozva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hir"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Új hír létrehozása",
+        "tags": [
+          "Hírek"
+        ]
+      }
+    },
+    "/hirek/{id}": {
+      "get": {
+        "description": "Lekéri egy adott hír adatait az azonosító alapján (publikus végpont).",
+        "operationId": "HirekController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hír sikeres lekérdezése",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hir"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Hír nem található"
+          }
+        },
+        "summary": "Hír lekérdezése ID alapján",
+        "tags": [
+          "Hírek"
+        ]
+      },
+      "patch": {
+        "description": "Meglévő hír módosítása admin jogosultsággal.",
+        "operationId": "HirekController_update",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateHirDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Hír sikeresen módosítva",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Hir"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Hír nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Hír módosítása",
+        "tags": [
+          "Hírek"
+        ]
+      },
+      "delete": {
+        "description": "Meglévő hír törlése admin jogosultsággal.",
+        "operationId": "HirekController_remove",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Hír sikeresen törölve"
+          },
+          "401": {
+            "description": "Érvénytelen vagy hiányzó JWT token"
+          },
+          "403": {
+            "description": "Nincs admin jogosultság"
+          },
+          "404": {
+            "description": "Hír nem található"
+          }
+        },
+        "security": [
+          {
+            "JWT-auth": []
+          }
+        ],
+        "summary": "Hír törlése",
+        "tags": [
+          "Hírek"
+        ]
+      }
+    },
+    "/telepulesek": {
+      "get": {
+        "operationId": "TelepulesController_findAll",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "A települések listája sikeresen lekérdezve.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/CreateTelepulesDto"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "summary": "Összes település lekérdezése",
+        "tags": [
+          "Települések"
+        ]
+      },
+      "post": {
+        "operationId": "TelepulesController_create",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTelepulesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "A település sikeresen létrehozva.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTelepulesDto"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Érvénytelen bemenet."
+          }
+        },
+        "summary": "Új település létrehozása",
+        "tags": [
+          "Települések"
+        ]
+      }
+    },
+    "/telepulesek/{id}": {
+      "get": {
+        "operationId": "TelepulesController_findOne",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "A település azonosítója",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A település sikeresen lekérdezve.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTelepulesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A település nem található."
+          }
+        },
+        "summary": "Egy település lekérdezése ID alapján",
+        "tags": [
+          "Települések"
+        ]
+      },
+      "put": {
+        "operationId": "TelepulesController_put",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "A település azonosítója",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateTelepulesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A település sikeresen frissítve.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTelepulesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A település nem található."
+          }
+        },
+        "summary": "Település teljes frissítése ID alapján",
+        "tags": [
+          "Települések"
+        ]
+      },
+      "patch": {
+        "operationId": "TelepulesController_patch",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "A település azonosítója",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTelepulesDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "A település sikeresen frissítve.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateTelepulesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A település nem található."
+          }
+        },
+        "summary": "Település részleges frissítése ID alapján",
+        "tags": [
+          "Települések"
+        ]
+      },
+      "delete": {
+        "operationId": "TelepulesController_delete",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "A település azonosítója",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A település sikeresen törölve."
+          },
+          "404": {
+            "description": "A település nem található."
+          }
+        },
+        "summary": "Település törlése ID alapján",
+        "tags": [
+          "Települések"
+        ]
+      }
+    },
+    "/telepulesek/iranyitoszam/{iranyitoszam}": {
+      "get": {
+        "operationId": "TelepulesController_findIranyitoszam",
+        "parameters": [
+          {
+            "name": "iranyitoszam",
+            "required": true,
+            "in": "path",
+            "description": "A település irányítószáma",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A település sikeresen lekérdezve.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTelepulesDto"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "A település nem található."
+          }
+        },
+        "summary": "Település lekérdezése irányítószám alapján",
+        "tags": [
+          "Települések"
+        ]
+      }
+    },
+    "/tesztadatok/szemelyekletrehozasa": {
+      "post": {
+        "description": "Létrehoz egy megadott számú teszt személyt.",
+        "operationId": "TesztAdatokController_szemelyekLetrehozasa",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "number",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Teszt személyek sikeresen létrehozva"
+          },
+          "400": {
+            "description": "Érvénytelen adatok"
+          }
+        },
+        "summary": "Személyek tesztadatok létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/szemelyektorlese": {
+      "post": {
+        "description": "Törli az összes teszt személyt.",
+        "operationId": "TesztAdatokController_szemelyekTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Teszt személyek sikeresen törölve"
+          }
+        },
+        "summary": "Személyek tesztadatok törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/telepulesekletrehozasa": {
+      "post": {
+        "description": "Létrehoz teszt településeket.",
+        "operationId": "TesztAdatokController_telepulesekLetrehozasa",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Teszt települések sikeresen létrehozva"
+          }
+        },
+        "summary": "Települések tesztadatok létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/telepulesektorlese": {
+      "post": {
+        "description": "Törli az összes teszt települést.",
+        "operationId": "TesztAdatokController_telepulesekTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Teszt települések sikeresen törölve"
+          }
+        },
+        "summary": "Települések tesztadatok törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/hirekletrehozasa": {
+      "post": {
+        "description": "Létrehoz teszt híreket.",
+        "operationId": "TesztAdatokController_hirekLetrehozasa",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Teszt hírek sikeresen létrehozva"
+          }
+        },
+        "summary": "Hírek tesztadatok létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/hirektorlese": {
+      "post": {
+        "description": "Törli az összes teszt hírt.",
+        "operationId": "TesztAdatokController_hirekTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Teszt hírek sikeresen törölve"
+          }
+        },
+        "summary": "Hírek tesztadatok törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/esemenyekletrehozasa": {
+      "post": {
+        "description": "Létrehoz teszt eseményeket.",
+        "operationId": "TesztAdatokController_esemenyekLetrehozasa",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Teszt események sikeresen létrehozva"
+          }
+        },
+        "summary": "Események tesztadatok létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/esemenyektorlese": {
+      "post": {
+        "description": "Törli az összes teszt eseményt.",
+        "operationId": "TesztAdatokController_esemenyekTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Teszt események sikeresen törölve"
+          }
+        },
+        "summary": "Események tesztadatok törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/feliratkozasokletrehozasa": {
+      "post": {
+        "description": "Létrehoz teszt feliratkozásokat.",
+        "operationId": "TesztAdatokController_feliratkozasokLetrehozasa",
+        "parameters": [],
+        "responses": {
+          "201": {
+            "description": "Teszt feliratkozások sikeresen létrehozva"
+          }
+        },
+        "summary": "Feliratkozások tesztadatok létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/feliratkozasoktorlese": {
+      "post": {
+        "description": "Törli az összes teszt feliratkozást.",
+        "operationId": "TesztAdatokController_feliratkozasokTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Teszt feliratkozások sikeresen törölve"
+          }
+        },
+        "summary": "Feliratkozások tesztadatok törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/tesztadatokletrehozasa": {
+      "post": {
+        "description": "Létrehoz minden tesztadatot (személyek, települések, hírek, események, feliratkozások).",
+        "operationId": "TesztAdatokController_tesztAdatokLetrehozasa",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "count": {
+                    "type": "number",
+                    "example": 10
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tesztadatok sikeresen létrehozva"
+          }
+        },
+        "summary": "Összes tesztadat létrehozása",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    },
+    "/tesztadatok/tesztadatoktorlese": {
+      "post": {
+        "description": "Törli az összes tesztadatot.",
+        "operationId": "TesztAdatokController_tesztAdatokTorlese",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "Tesztadatok sikeresen törölve"
+          }
+        },
+        "summary": "Összes tesztadat törlése",
+        "tags": [
+          "Tesztadatok"
+        ]
+      }
+    }
+  },
+  "info": {
+    "title": "NestJS keretrendszerrel készített REST API",
+    "description": "REST API személyek, címek, események, feliratkozások, hírek és települések kezelésére",
+    "version": "1.0",
+    "contact": {}
+  },
+  "tags": [],
+  "servers": [],
+  "components": {
+    "securitySchemes": {
+      "JWT-auth": {
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "type": "http"
+      }
+    },
+    "schemas": {
+      "CreateCimDto": {
+        "type": "object",
+        "properties": {
+          "cim_tipus": {
+            "type": "string",
+            "description": "A cím típusa",
+            "example": "állandó",
+            "enum": [
+              "állandó",
+              "tartózkodási",
+              "levelezési"
+            ]
+          },
+          "cim_iranyitoszam": {
+            "type": "string",
+            "description": "A cím irányítószáma",
+            "example": "1234"
+          },
+          "cim_varos": {
+            "type": "string",
+            "description": "A cím városa",
+            "example": "Budapest"
+          },
+          "cim_utca": {
+            "type": "string",
+            "description": "A cím utcája",
+            "example": "Fő utca 1"
+          }
+        },
+        "required": [
+          "cim_tipus",
+          "cim_iranyitoszam",
+          "cim_varos",
+          "cim_utca"
+        ]
+      },
+      "RegisterSzemelyDto": {
+        "type": "object",
+        "properties": {
+          "szemely_vezeteknev": {
+            "type": "string",
+            "description": "A személy vezetékneve",
+            "example": "Kovács"
+          },
+          "szemely_keresztnev": {
+            "type": "string",
+            "description": "A személy keresztneve",
+            "example": "Anna"
+          },
+          "szemely_szuletesi_datum": {
+            "format": "date-time",
+            "type": "string",
+            "description": "A személy születési dátuma (opcionális)",
+            "example": "1990-01-01"
+          },
+          "szemely_anyja_neve": {
+            "type": "string",
+            "description": "A személy anyjának neve (opcionális)",
+            "example": "Szabó Mária"
+          },
+          "szemely_vegzettseg": {
+            "type": "string",
+            "description": "A személy végzettsége",
+            "example": "középfok",
+            "enum": [
+              "nincs",
+              "alapfok",
+              "középfok",
+              "felsőfok"
+            ]
+          },
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_telefon": {
+            "type": "string",
+            "description": "A személy telefonszáma (opcionális)",
+            "example": "+36301234567"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava (legalább 8 karakter, kisbetű, nagybetű és szám)",
+            "example": "Titkos123"
+          },
+          "szemely_cimek": {
+            "description": "A személyhez tartozó címek (opcionális)",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateCimDto"
+            }
+          }
+        },
+        "required": [
+          "szemely_vezeteknev",
+          "szemely_keresztnev",
+          "szemely_vegzettseg",
+          "szemely_email",
+          "szemely_felhasznalonev",
+          "szemely_jelszo"
+        ]
+      },
+      "Cim": {
+        "type": "object",
+        "properties": {
+          "cim_id": {
+            "type": "number",
+            "description": "A cím egyedi azonosítója",
+            "example": 1
+          },
+          "cim_tipus": {
+            "type": "string",
+            "description": "A cím típusa",
+            "example": "állandó",
+            "enum": [
+              "állandó",
+              "tartózkodási",
+              "levelezési"
+            ]
+          },
+          "cim_iranyitoszam": {
+            "type": "string",
+            "description": "A cím irányítószáma",
+            "example": "1234"
+          },
+          "cim_varos": {
+            "type": "string",
+            "description": "A cím városa",
+            "example": "Budapest"
+          },
+          "cim_utca": {
+            "type": "string",
+            "description": "A cím utcája",
+            "example": "Fő utca 1"
+          },
+          "cim_szemely_id": {
+            "type": "number",
+            "description": "A címhez tartozó személy azonosítója",
+            "example": 1
+          }
+        },
+        "required": [
+          "cim_id",
+          "cim_tipus",
+          "cim_iranyitoszam",
+          "cim_varos",
+          "cim_utca",
+          "cim_szemely_id"
+        ]
+      },
+      "Esemeny": {
+        "type": "object",
+        "properties": {
+          "esemeny_id": {
+            "type": "number",
+            "description": "Az esemény egyedi azonosítója",
+            "example": 1
+          },
+          "esemeny_nev": {
+            "type": "string",
+            "description": "Az esemény neve",
+            "example": "Éves konferencia"
+          },
+          "esemeny_leiras": {
+            "type": "string",
+            "description": "Az esemény leírása",
+            "example": "Éves szakmai konferencia a technológiai újításokról"
+          },
+          "esemeny_helyszin": {
+            "type": "string",
+            "description": "Az esemény helyszíne",
+            "example": "Budapest, Kongresszusi Központ"
+          },
+          "esemeny_idopont": {
+            "format": "date-time",
+            "type": "string",
+            "description": "Az esemény időpontja",
+            "example": "2025-12-01T10:00:00Z"
+          },
+          "esemeny_max_fo": {
+            "type": "number",
+            "description": "Az esemény maximális létszáma",
+            "example": 100
+          },
+          "esemeny_feliratkozasok": {
+            "description": "Az eseményhez tartozó feliratkozások",
+            "type": "array",
+            "items": {
+              "type": "array"
+            }
+          }
+        },
+        "required": [
+          "esemeny_id",
+          "esemeny_nev",
+          "esemeny_leiras",
+          "esemeny_helyszin",
+          "esemeny_idopont",
+          "esemeny_max_fo",
+          "esemeny_feliratkozasok"
+        ]
+      },
+      "Feliratkozas": {
+        "type": "object",
+        "properties": {
+          "feliratkozas_id": {
+            "type": "number",
+            "description": "A feliratkozás egyedi azonosítója",
+            "example": 1
+          },
+          "feliratkozas_szemely_id": {
+            "type": "number",
+            "description": "A feliratkozó személy azonosítója",
+            "example": 1
+          },
+          "feliratkozas_esemeny_id": {
+            "type": "number",
+            "description": "Az esemény azonosítója",
+            "example": 1
+          },
+          "feliratkozas_esemeny": {
+            "description": "A feliratkozás eseménye",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Esemeny"
+              }
+            ]
+          }
+        },
+        "required": [
+          "feliratkozas_id",
+          "feliratkozas_szemely_id",
+          "feliratkozas_esemeny_id",
+          "feliratkozas_esemeny"
+        ]
+      },
+      "Szemely": {
+        "type": "object",
+        "properties": {
+          "szemely_id": {
+            "type": "number",
+            "description": "A személy egyedi azonosítója",
+            "example": 1
+          },
+          "szemely_vezeteknev": {
+            "type": "string",
+            "description": "A személy vezetékneve",
+            "example": "Kovács"
+          },
+          "szemely_keresztnev": {
+            "type": "string",
+            "description": "A személy keresztneve",
+            "example": "Anna"
+          },
+          "szemely_szuletesi_datum": {
+            "type": "object",
+            "description": "A személy születési dátuma (opcionális)",
+            "example": "1990-01-01"
+          },
+          "szemely_anyja_neve": {
+            "type": "object",
+            "description": "A személy anyjának neve (opcionális)",
+            "example": "Szabó Mária"
+          },
+          "szemely_vegzettseg": {
+            "type": "string",
+            "description": "A személy végzettsége",
+            "example": "középfok",
+            "enum": [
+              "nincs",
+              "alapfok",
+              "középfok",
+              "felsőfok"
+            ]
+          },
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_telefon": {
+            "type": "object",
+            "description": "A személy telefonszáma (opcionális)",
+            "example": "+36301234567"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava (titkosítva tárolva)",
+            "example": "Titkos123"
+          },
+          "szemely_jogosultsag": {
+            "type": "string",
+            "description": "A személy jogosultsága",
+            "example": "user",
+            "enum": [
+              "nincs",
+              "user",
+              "admin"
+            ]
+          },
+          "szemely_torolve": {
+            "format": "date-time",
+            "type": "string",
+            "description": "A személy törlésének időpontja (soft delete)",
+            "example": "2025-06-28T13:00:00Z"
+          },
+          "szemely_cimek": {
+            "description": "A személyhez tartozó címek",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Cim"
+            }
+          },
+          "szemely_feliratkozasok": {
+            "description": "A személyhez tartozó feliratkozások",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Feliratkozas"
+            }
+          }
+        },
+        "required": [
+          "szemely_id",
+          "szemely_vezeteknev",
+          "szemely_keresztnev",
+          "szemely_vegzettseg",
+          "szemely_email",
+          "szemely_felhasznalonev",
+          "szemely_jelszo",
+          "szemely_jogosultsag",
+          "szemely_cimek",
+          "szemely_feliratkozasok"
+        ]
+      },
+      "LoginSzemelyDto": {
+        "type": "object",
+        "properties": {
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe (opcionális, ha felhasználónév meg van adva)",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve (opcionális, ha email cím meg van adva)",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava",
+            "example": "Titkos123"
+          }
+        },
+        "required": [
+          "szemely_jelszo"
+        ]
+      },
+      "LoginResponseDto": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "type": "string",
+            "description": "JWT token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+          }
+        },
+        "required": [
+          "access_token"
+        ]
+      },
+      "ModifyPasswordDto": {
+        "type": "object",
+        "properties": {
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe (opcionális, ha felhasználónév meg van adva)",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve (opcionális, ha email cím meg van adva)",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava",
+            "example": "Titkos123"
+          },
+          "szemely_ujjelszo": {
+            "type": "string",
+            "description": "A személy új jelszava",
+            "example": "TitkosUj123"
+          }
+        },
+        "required": [
+          "szemely_jelszo",
+          "szemely_ujjelszo"
+        ]
+      },
+      "CreateSzemelyDto": {
+        "type": "object",
+        "properties": {
+          "szemely_vezeteknev": {
+            "type": "string",
+            "description": "A személy vezetékneve",
+            "example": "Kovács"
+          },
+          "szemely_keresztnev": {
+            "type": "string",
+            "description": "A személy keresztneve",
+            "example": "Anna"
+          },
+          "szemely_szuletesi_datum": {
+            "type": "object",
+            "description": "A személy születési dátuma (opcionális)",
+            "example": "1990-01-01"
+          },
+          "szemely_anyja_neve": {
+            "type": "object",
+            "description": "A személy anyjának neve (opcionális)",
+            "example": "Szabó Mária"
+          },
+          "szemely_vegzettseg": {
+            "type": "string",
+            "description": "A személy végzettsége",
+            "example": "középfok",
+            "enum": [
+              "nincs",
+              "alapfok",
+              "középfok",
+              "felsőfok"
+            ]
+          },
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_telefon": {
+            "type": "object",
+            "description": "A személy telefonszáma (opcionális)",
+            "example": "+36301234567"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava",
+            "example": "Titkos123"
+          },
+          "szemely_jogosultsag": {
+            "type": "string",
+            "description": "A személy jogosultsága",
+            "example": "user",
+            "enum": [
+              "nincs",
+              "user",
+              "admin"
+            ]
+          },
+          "szemely_cimek": {
+            "description": "A személyhez tartozó címek (opcionális)",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateCimDto"
+            }
+          }
+        },
+        "required": [
+          "szemely_vezeteknev",
+          "szemely_keresztnev",
+          "szemely_vegzettseg",
+          "szemely_email",
+          "szemely_felhasznalonev",
+          "szemely_jelszo",
+          "szemely_jogosultsag"
+        ]
+      },
+      "UpdateSzemelyDto": {
+        "type": "object",
+        "properties": {
+          "szemely_vezeteknev": {
+            "type": "string",
+            "description": "A személy vezetékneve (opcionális)",
+            "example": "Kovács"
+          },
+          "szemely_keresztnev": {
+            "type": "string",
+            "description": "A személy keresztneve (opcionális)",
+            "example": "Anna"
+          },
+          "szemely_szuletesi_datum": {
+            "type": "object",
+            "description": "A személy születési dátuma (opcionális)",
+            "example": "1990-01-01"
+          },
+          "szemely_anyja_neve": {
+            "type": "object",
+            "description": "A személy anyjának neve (opcionális)",
+            "example": "Szabó Mária"
+          },
+          "szemely_vegzettseg": {
+            "type": "string",
+            "description": "A személy végzettsége (opcionális)",
+            "example": "középfok",
+            "enum": [
+              "nincs",
+              "alapfok",
+              "középfok",
+              "felsőfok"
+            ]
+          },
+          "szemely_email": {
+            "type": "string",
+            "description": "A személy email címe (opcionális)",
+            "example": "kovacs.anna@example.com"
+          },
+          "szemely_telefon": {
+            "type": "object",
+            "description": "A személy telefonszáma (opcionális)",
+            "example": "+36301234567"
+          },
+          "szemely_felhasznalonev": {
+            "type": "string",
+            "description": "A személy felhasználóneve (opcionális)",
+            "example": "kovacsanna"
+          },
+          "szemely_jelszo": {
+            "type": "string",
+            "description": "A személy jelszava (opcionális)",
+            "example": "Titkos123"
+          },
+          "szemely_jogosultsag": {
+            "type": "string",
+            "description": "A személy jogosultsága (opcionális)",
+            "example": "user",
+            "enum": [
+              "nincs",
+              "user",
+              "admin"
+            ]
+          },
+          "szemely_cimek": {
+            "description": "A személyhez tartozó címek (opcionális)",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CreateCimDto"
+            }
+          }
+        }
+      },
+      "Object": {
+        "type": "object",
+        "properties": {}
+      },
+      "CreateEsemenyDto": {
+        "type": "object",
+        "properties": {
+          "esemeny_nev": {
+            "type": "string",
+            "description": "Az esemény neve",
+            "example": "Éves konferencia"
+          },
+          "esemeny_leiras": {
+            "type": "string",
+            "description": "Az esemény leírása",
+            "example": "Éves szakmai konferencia a technológiai újításokról"
+          },
+          "esemeny_helyszin": {
+            "type": "string",
+            "description": "Az esemény helyszíne",
+            "example": "Budapest, Kongresszusi Központ"
+          },
+          "esemeny_idopont": {
+            "type": "string",
+            "description": "Az esemény időpontja (ISO 8601 formátumban)",
+            "example": "2025-12-01T10:00:00Z"
+          },
+          "esemeny_max_fo": {
+            "type": "number",
+            "description": "Az esemény maximális létszáma",
+            "example": 100
+          }
+        },
+        "required": [
+          "esemeny_nev",
+          "esemeny_leiras",
+          "esemeny_helyszin",
+          "esemeny_idopont",
+          "esemeny_max_fo"
+        ]
+      },
+      "UpdateEsemenyDto": {
+        "type": "object",
+        "properties": {
+          "esemeny_nev": {
+            "type": "string",
+            "description": "Az esemény neve (opcionális)",
+            "example": "Éves konferencia"
+          },
+          "esemeny_leiras": {
+            "type": "string",
+            "description": "Az esemény leírása (opcionális)",
+            "example": "Éves szakmai konferencia a technológiai újításokról"
+          },
+          "esemeny_helyszin": {
+            "type": "string",
+            "description": "Az esemény helyszíne (opcionális)",
+            "example": "Budapest, Kongresszusi Központ"
+          },
+          "esemeny_idopont": {
+            "type": "string",
+            "description": "Az esemény időpontja (ISO 8601 formátumban, opcionális)",
+            "example": "2025-12-01T10:00:00Z"
+          },
+          "esemeny_max_fo": {
+            "type": "number",
+            "description": "Az esemény maximális létszáma (opcionális)",
+            "example": 100
+          }
+        }
+      },
+      "CreateFeliratkozasDto": {
+        "type": "object",
+        "properties": {
+          "feliratkozas_szemely_id": {
+            "type": "number",
+            "description": "A feliratkozó személy azonosítója",
+            "example": 1
+          },
+          "feliratkozas_esemeny_id": {
+            "type": "number",
+            "description": "Az esemény azonosítója",
+            "example": 1
+          }
+        },
+        "required": [
+          "feliratkozas_szemely_id",
+          "feliratkozas_esemeny_id"
+        ]
+      },
+      "Hir": {
+        "type": "object",
+        "properties": {
+          "hir_id": {
+            "type": "number",
+            "description": "A hír egyedi azonosítója",
+            "example": 1
+          },
+          "hir_cim": {
+            "type": "string",
+            "description": "A hír címe",
+            "example": "Új esemény bejelentése"
+          },
+          "hir_tartalom": {
+            "type": "string",
+            "description": "A hír tartalma",
+            "example": "Új esemény kerül megrendezésre decemberben."
+          },
+          "hir_datum": {
+            "type": "object",
+            "description": "A hír dátuma (opcionális)",
+            "example": "2025-06-28"
+          }
+        },
+        "required": [
+          "hir_id",
+          "hir_cim",
+          "hir_tartalom"
+        ]
+      },
+      "CreateHirDto": {
+        "type": "object",
+        "properties": {
+          "hir_cim": {
+            "type": "string",
+            "description": "A hír címe",
+            "example": "Új esemény bejelentése"
+          },
+          "hir_tartalom": {
+            "type": "string",
+            "description": "A hír tartalma",
+            "example": "Új esemény kerül megrendezésre decemberben."
+          },
+          "hir_datum": {
+            "type": "object",
+            "description": "A hír dátuma (opcionális)",
+            "example": "2025-06-28"
+          }
+        },
+        "required": [
+          "hir_cim",
+          "hir_tartalom"
+        ]
+      },
+      "UpdateHirDto": {
+        "type": "object",
+        "properties": {
+          "hir_cim": {
+            "type": "string",
+            "description": "A hír címe (opcionális)",
+            "example": "Új esemény bejelentése"
+          },
+          "hir_tartalom": {
+            "type": "string",
+            "description": "A hír tartalma (opcionális)",
+            "example": "Új esemény kerül megrendezésre decemberben."
+          },
+          "hir_datum": {
+            "type": "object",
+            "description": "A hír dátuma (opcionális)",
+            "example": "2025-06-28"
+          }
+        }
+      },
+      "CreateTelepulesDto": {
+        "type": "object",
+        "properties": {
+          "telepules_varos": {
+            "type": "string",
+            "description": "A település neve"
+          },
+          "telepules_iranyitoszam": {
+            "type": "string",
+            "description": "A település irányítószáma"
+          },
+          "telepules_megye": {
+            "type": "string",
+            "description": "A település megyéje (opcionális)",
+            "nullable": true
+          }
+        },
+        "required": [
+          "telepules_varos",
+          "telepules_iranyitoszam",
+          "telepules_megye"
+        ]
+      },
+      "UpdateTelepulesDto": {
+        "type": "object",
+        "properties": {
+          "telepules_varos": {
+            "type": "string",
+            "description": "A település neve (opcionális)"
+          },
+          "telepules_iranyitoszam": {
+            "type": "string",
+            "description": "A település irányítószáma (opcionális)"
+          },
+          "telepules_megye": {
+            "type": "string",
+            "description": "A település megyéje (opcionális)",
+            "nullable": true
+          }
+        }
+      }
+    }
+  }
+}

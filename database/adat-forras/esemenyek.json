@@ -1,0 +1,308 @@
+[
+  {
+    "megnevezes": "Sziget Fesztivál 2025",
+    "helyszin": "Budapest, Óbudai-sziget",
+    "leiras": "<div><h2>Európa egyik legnagyobb zenei fesztiválja</h2><p>A Sziget Fesztivál 2025-ben is több száz fellépőt vonultat fel, köztük világsztárokat, mint Post Malone, Charli XCX és A$AP Rocky. A fesztivál hat napig tart, és számos műfajt kínál: pop, rock, elektronikus zene, hip-hop. Emellett kulturális programok, színházi előadások és művészeti installációk várják a látogatókat.</p><p><strong>Programok:</strong> Fő színpad koncertek, Silent Disco, Sziget Beach, ArtZone. További információ: <a href=\"https://szigetfestival.com\" target=\"_blank\">szigetfestival.com</a>.</p></div>",
+    "datum": "2025-08-06"
+  },
+  {
+    "megnevezes": "Budapesti Tavaszi Fesztivál",
+    "helyszin": "Budapest, több helyszín",
+    "leiras": "A Budapesti Tavaszi Fesztivál 2025-ben a klasszikus zene, színház és kortárs művészetek ünnepe. A rendezvény különböző helyszíneken, például a Müpában és a Zeneakadémián kínál koncerteket, opera-előadásokat és kiállításokat. A fesztivál célja a magyar és nemzetközi művészek bemutatása, valamint Budapest kulturális sokszínűségének népszerűsítése.",
+    "datum": "2025-04-10"
+  },
+  {
+    "megnevezes": "Hungarian Summit 2025",
+    "helyszin": "Budapest, Corvinus Gellért Campus",
+    "leiras": "<div><h2>Üzleti és kulturális kapcsolatok</h2><p>A Hungarian Summit 2025 az Egyesült Államok és Magyarország közötti együttműködést erősíti üzleti, oktatási, sport- és kulturális téren. Több mint 50 előadó, networking események és kulturális programok várják a résztvevőket. A konferencia kiemelt témái: innováció, transzatlanti kapcsolatok, startupok.</p><p><strong>Időtartam:</strong> Május 31. – Június 6.</p></div>",
+    "datum": "2025-06-05"
+  },
+  {
+    "megnevezes": "Balaton Sound Fesztivál",
+    "helyszin": "Zamárdi, Balaton-part",
+    "leiras": "A Balaton Sound 2025-ben a Balaton-part legnagyobb elektronikus zenei fesztiválja. Világhírű DJ-k, mint Martin Garrix és David Guetta lépnek fel, a fesztivál pedig exkluzív VIP zónával és vízparti bulikkal várja a látogatókat. A programot hajós partik és naplemente koncertek színesítik.",
+    "datum": "2025-07-03"
+  },
+  {
+    "megnevezes": "Debreceni Virágkarnevál",
+    "helyszin": "Debrecen, Nagyerdei Stadion",
+    "leiras": "<div><h2>Virágokkal díszített felvonulás</h2><p>A Debreceni Virágkarnevál 2025-ben is látványos virágkompozíciókkal és felvonulással ünnepli a nyár végét. A Nagyerdei Stadionban gálaműsor zárja az eseményt, ahol táncosok, zenekarok és tűzijáték szórakoztatja a közönséget.</p><ul><li>Felvonulás: 10:00-12:00</li><li>Gálaműsor: 19:00</li></ul></div>",
+    "datum": "2025-08-20"
+  },
+  {
+    "megnevezes": "Pécsi Nyári Színház",
+    "helyszin": "Pécs, Káptalan Kert",
+    "leiras": "A Pécsi Nyári Színház 2025-ben szabadtéri színházi előadásokat kínál, köztük klasszikus magyar darabokat és modern vígjátékokat. A Káptalan Kert történelmi környezetében a látogatók élvezhetik a nyáresti kulturális programokat.",
+    "datum": "2025-07-10"
+  },
+  {
+    "megnevezes": "Budapesti Borfesztivál",
+    "helyszin": "Budapest, Buda Vár",
+    "leiras": "<div><h2>Magyar borok ünnepe</h2><p>A Budapesti Borfesztivál 2025-ben a magyar borászatok legjobbjait mutatja be a Buda Várban. A látogatók több száz bort kóstolhatnak, köztük Tokaji aszút és Villányi vörösborokat. A fesztiválon koncertek, gasztronómiai standok és kézműves vásár is várja az érdeklődőket.</p></div>",
+    "datum": "2025-09-12"
+  },
+  {
+    "megnevezes": "Imagine Dragons koncert",
+    "helyszin": "Budapest, Puskás Ferenc Stadion",
+    "leiras": "Az Imagine Dragons 2025-ös budapesti koncertje a Puskás Ferenc Stadionban kerül megrendezésre, Declan McKenna előzenekarral. A banda legnagyobb slágerei, mint a 'Radioactive' és 'Believer', élőben csendülnek fel. A koncert kezdési időpontja 17:00, jegyár: 99 USD.",
+    "datum": "2025-06-15"
+  },
+  {
+    "megnevezes": "Pancake Picnic",
+    "helyszin": "Budapest, Újbuda",
+    "leiras": "<div><h2>Palacsinta fesztivál</h2><p>A Pancake Picnic 2025-ben Újbudán, az Allee Mall mellett kínál különféle palacsintákat: hagyományos magyar, amerikai stílusú és nemzetközi ízek. A családi rendezvényen gyerekprogramok, élő zene és kézműves vásár is lesz.</p></div>",
+    "datum": "2025-05-16"
+  },
+  {
+    "megnevezes": "Győri Nemzetközi Könyvfesztivál",
+    "helyszin": "Győr, Baross Gábor út",
+    "leiras": "A Győri Nemzetközi Könyvfesztivál 2025-ben könyvbemutatókkal, író-olvasó találkozókkal és irodalmi előadásokkal várja a látogatókat. A rendezvényen magyar és külföldi szerzők mutatják be legújabb műveiket, emellett gyerekprogramok és dedikálások is lesznek.",
+    "datum": "2025-04-25"
+  },
+  {
+    "megnevezes": "Szegedi Szabadtéri Játékok",
+    "helyszin": "Szeged, Dóm tér",
+    "leiras": "<div><h2>Színházi élmény a Dóm téren</h2><p>A Szegedi Szabadtéri Játékok 2025-ben operaelőadásokkal, musicalekkel és drámákkal várja a közönséget. A Dóm tér lenyűgöző környezetében olyan darabok kerülnek színpadra, mint a 'Turandot' és a 'West Side Story'.</p></div>",
+    "datum": "2025-07-05"
+  },
+  {
+    "megnevezes": "Kecskeméti Hírös Hét Fesztivál",
+    "helyszin": "Kecskemét, Főtér",
+    "leiras": "A Kecskeméti Hírös Hét Fesztivál 2025-ben a helyi kultúrát és gasztronómiát ünnepli. A látogatók kóstolhatják a híres kecskeméti barackpálinkát, miközben koncertek, kézműves vásár és táncbemutatók szórakoztatják őket.",
+    "datum": "2025-08-15"
+  },
+  {
+    "megnevezes": "Veszprémi Utcazene Fesztivál",
+    "helyszin": "Veszprém, Óváros tér",
+    "leiras": "<div><h2>Zene az utcákon</h2><p>A Veszprémi Utcazene Fesztivál 2025-ben ingyenes koncertekkel tölti meg Veszprém belvárosát. Helyi és nemzetközi utcazenészek lépnek fel, a műfajok között megtalálható a jazz, folk és pop is.</p></div>",
+    "datum": "2025-07-20"
+  },
+  {
+    "megnevezes": "Miskolci Kocsonyafesztivál",
+    "helyszin": "Miskolc, Főtér",
+    "leiras": "A Miskolci Kocsonyafesztivál 2025-ben gasztronómiai és kulturális programokkal várja a látogatókat. A hagyományos kocsonya mellett más magyar ételeket is kóstolhatnak a vendégek, miközben koncertek és kézműves vásár színesíti a programot.",
+    "datum": "2025-02-15"
+  },
+  {
+    "megnevezes": "Budapesti Nemzetközi Cirkuszfesztivál",
+    "helyszin": "Budapest, Fővárosi Nagycirkusz",
+    "leiras": "<div><h2>Cirkuszművészet világszínvonalon</h2><p>A Budapesti Nemzetközi Cirkuszfesztivál 2025-ben a világ legjobb cirkuszművészeit hozza el. Látványos akrobatika, állatszámok és humoros előadások várják a családokat.</p></div>",
+    "datum": "2025-01-10"
+  },
+  {
+    "megnevezes": "Soproni Kék Frankos Napok",
+    "helyszin": "Sopron, Főtér",
+    "leiras": "A Soproni Kék Frankos Napok 2025-ben a soproni borvidék borait ünnepli. A látogatók borkóstolókon vehetnek részt, miközben helyi zenekarok és tánccsoportok szórakoztatják őket.",
+    "datum": "2025-06-20"
+  },
+  {
+    "megnevezes": "Eger Bikavér Ünnep",
+    "helyszin": "Eger, Dobó tér",
+    "leiras": "<div><h2>Bor és kultúra</h2><p>Az Eger Bikavér Ünnep 2025-ben az egri borvidék legismertebb borát, a Bikavért helyezi középpontba. Borkóstolók, gasztronómiai standok és élő koncertek várják a látogatókat a Dobó téren.</p></div>",
+    "datum": "2025-07-15"
+  },
+  {
+    "megnevezes": "Füzesgyarmati Kolbászfesztivál",
+    "helyszin": "Füzesgyarmat, Sportpálya",
+    "leiras": "A Füzesgyarmati Kolbászfesztivál 2025-ben a hagyományos magyar kolbászkészítést ünnepli. Kolbásztöltő verseny, kóstolók és családi programok várják a látogatókat.",
+    "datum": "2025-10-05"
+  },
+  {
+    "megnevezes": "Nyíregyházi TirámiSÚ Fesztivál",
+    "helyszin": "Nyíregyháza, Kossuth tér",
+    "leiras": "<div><h2>Édesség ünnep</h2><p>A Nyíregyházi TirámiSÚ Fesztivál 2025-ben a tiramisu különböző változatait kínálja. A látogatók kóstolhatják a klasszikus és kreatív recepteket, miközben gyerekprogramok és koncertek szórakoztatják őket.</p></div>",
+    "datum": "2025-09-20"
+  },
+  {
+    "megnevezes": "Pálinka és Mangalica Fesztivál",
+    "helyszin": "Budapest, Városháza Park",
+    "leiras": "A Pálinka és Mangalica Fesztivál 2025-ben a magyar pálinkát és mangalica ételeket helyezi középpontba. Kóstolók, főzőbemutatók és élő zene várja a látogatókat.",
+    "datum": "2025-04-20"
+  },
+  {
+    "megnevezes": "Szentendrei Művészeti Fesztivál",
+    "helyszin": "Szentendre, Főtér",
+    "leiras": "<div><h2>Művészet a Dunakanyarban</h2><p>A Szentendrei Művészeti Fesztivál 2025-ben kiállításokkal, szabadtéri előadásokkal és műhelyfoglalkozásokkal várja a művészetkedvelőket. A festői Szentendre tökéletes helyszín a kulturális programokhoz.</p></div>",
+    "datum": "2025-06-10"
+  },
+  {
+    "megnevezes": "Hortobágyi Lovasnapok",
+    "helyszin": "Hortobágy, Mátai Ménes",
+    "leiras": "A Hortobágyi Lovasnapok 2025-ben a magyar pusztai hagyományokat ünnepli. Lovasbemutatók, csikós programok és népzenei koncertek várják a látogatókat.",
+    "datum": "2025-07-25"
+  },
+  {
+    "megnevezes": "Balatonfüredi Borhetek",
+    "helyszin": "Balatonfüred, Tagore sétány",
+    "leiras": "<div><h2>Borok a Balaton partján</h2><p>A Balatonfüredi Borhetek 2025-ben a balatonfüredi borvidék legjobb borait kínálja. Borkóstolók, gasztronómiai programok és élő zene a Tagore sétányon.</p></div>",
+    "datum": "2025-08-05"
+  },
+  {
+    "megnevezes": "Siófoki Halfesztivál",
+    "helyszin": "Siófok, Fő tér",
+    "leiras": "A Siófoki Halfesztivál 2025-ben a balatoni halételeket helyezi középpontba. Halászléfőző verseny, kóstolók és családi programok várják a látogatókat.",
+    "datum": "2025-06-25"
+  },
+  {
+    "megnevezes": "Budapesti Karácsonyi Vásár",
+    "helyszin": "Budapest, Vörösmarty tér",
+    "leiras": "<div><h2>Ünnepi hangulat</h2><p>A Budapesti Karácsonyi Vásár 2025-ben hagyományos magyar kézműves termékekkel, forralt borral és kürtőskaláccsal várja a látogatókat. A vásár adventi programokkal és koncertekkel színesíti a téli estéket.</p></div>",
+    "datum": "2025-11-15"
+  },
+  {
+    "megnevezes": "Sziget Fesztivál 2026",
+    "helyszin": "Budapest, Óbudai-sziget",
+    "leiras": "<div><h2>Zenei és kulturális kavalkád</h2><p>A Sziget Fesztivál 2026-ban is világsztárokat hoz Budapestre, több száz koncerttel és kulturális programmal. A fesztivál a szabadság és sokszínűség jegyében zajlik, számos színpaddal és aktivitással.</p></div>",
+    "datum": "2026-08-05"
+  },
+  {
+    "megnevezes": "Budapesti Nemzetközi Könyvfesztivál",
+    "helyszin": "Budapest, Millenáris Park",
+    "leiras": "A Budapesti Nemzetközi Könyvfesztivál 2026-ban a világirodalom legújabb műveit mutatja be. Író-olvasó találkozók, dedikálások és irodalmi előadások várják a könyvbarátokat.",
+    "datum": "2026-04-15"
+  },
+  {
+    "megnevezes": "Balatonfüredi Gitárfesztivál",
+    "helyszin": "Balatonfüred, Kisfaludy Színpad",
+    "leiras": "<div><h2>Zene a Balatonnál</h2><p>A Balatonfüredi Gitárfesztivál 2026-ban klasszikus és modern gitárkoncertekkel várja a látogatókat. Helyi és nemzetközi művészek lépnek fel a szabadtéri színpadon.</p></div>",
+    "datum": "2026-07-10"
+  },
+  {
+    "megnevezes": "Szegedi Borfesztivál",
+    "helyszin": "Szeged, Széchenyi tér",
+    "leiras": "A Szegedi Borfesztivál 2026-ban a dél-alföldi borvidékek legjobb borait kínálja. Borkóstolók, gasztronómiai standok és élő zene várja a látogatókat.",
+    "datum": "2026-05-20"
+  },
+  {
+    "megnevezes": "Debreceni Jazz Napok",
+    "helyszin": "Debrecen, Nagyerdei Szabadtéri Színpad",
+    "leiras": "<div><h2>Jazz ünnep</h2><p>A Debreceni Jazz Napok 2026-ban magyar és nemzetközi jazz zenészeket hoz el. A Nagyerdei Szabadtéri Színpadon szabadtéri koncertek várják a műfaj rajongóit.</p></div>",
+    "datum": "2026-06-15"
+  },
+  {
+    "megnevezes": "Pécsi Zsolnay Fesztivál",
+    "helyszin": "Pécs, Zsolnay Negyed",
+    "leiras": "A Pécsi Zsolnay Fesztivál 2026-ban kulturális és művészeti programokkal várja a látogatókat. Kiállítások, koncertek és családi programok a Zsolnay Negyedben.",
+    "datum": "2026-05-10"
+  },
+  {
+    "megnevezes": "Győri Barokk Napok",
+    "helyszin": "Győr, Széchenyi tér",
+    "leiras": "<div><h2>Barokk zene és kultúra</h2><p>A Győri Barokk Napok 2026-ban barokk zenei koncertekkel és történelmi kosztümös felvonulással ünnepli a barokk korszakot. A Széchenyi téren szabadtéri előadások várják a látogatókat.</p></div>",
+    "datum": "2026-08-20"
+  },
+  {
+    "megnevezes": "Miskolci Operafesztivál",
+    "helyszin": "Miskolc, Művészetek Háza",
+    "leiras": "A Miskolci Operafesztivál 2026-ban opera- és komolyzenei előadásokkal várja a közönséget. A fesztiválon nemzetközi művészek is fellépnek.",
+    "datum": "2026-06-05"
+  },
+  {
+    "megnevezes": "Soproni Szüreti Napok",
+    "helyszin": "Sopron, Főtér",
+    "leiras": "<div><h2>Szüret és borok</h2><p>A Soproni Szüreti Napok 2026-ban a szüretet és a soproni borokat ünnepli. Borkóstolók, néptánc-bemutatók és kézműves vásár várja a látogatókat.</p></div>",
+    "datum": "2026-09-15"
+  },
+  {
+    "megnevezes": "Keszthelyi Balatoni Hal- és Termelői Piac",
+    "helyszin": "Keszthely, Főtér",
+    "leiras": "A Keszthelyi Balatoni Hal- és Termelői Piac 2026-ban a balatoni halételeket és helyi termelői termékeket kínálja. Kóstolók, főzőbemutatók és gyerekprogramok.",
+    "datum": "2026-07-25"
+  },
+  {
+    "megnevezes": "Budapesti Nemzetközi Maraton",
+    "helyszin": "Budapest, Hősök tere",
+    "leiras": "<div><h2>Futás a Duna-parton</h2><p>A Budapesti Nemzetközi Maraton 2026-ban amatőr és profi futókat vár a főváros legszebb útvonalain. A távok között szerepel a teljes maraton, félmaraton és váltófutás.</p></div>",
+    "datum": "2026-10-05"
+  },
+  {
+    "megnevezes": "Szentendrei Adventi Vásár",
+    "helyszin": "Szentendre, Főtér",
+    "leiras": "A Szentendrei Adventi Vásár 2026-ban ünnepi hangulattal, kézműves termékekkel és forralt borral várja a látogatókat. A vásár adventi koncertekkel és gyerekprogramokkal színesíti a telet.",
+    "datum": "2026-12-01"
+  },
+  {
+    "megnevezes": "Szegedi Paprika Fesztivál",
+    "helyszin": "Szeged, Klauzál tér",
+    "leiras": "<div><h2>Fűszeres ízek</h2><p>A Szegedi Paprika Fesztivál 2026-ban a szegedi paprika hagyományait ünnepli. Paprikás ételek kóstolása, főzőverseny és kulturális programok.</p></div>",
+    "datum": "2026-09-10"
+  },
+  {
+    "megnevezes": "Debreceni Karácsonyi Vásár",
+    "helyszin": "Debrecen, Kossuth tér",
+    "leiras": "A Debreceni Karácsonyi Vásár 2026-ban adventi fényekkel, kézműves termékekkel és gasztronómiai kínálattal várja a látogatókat.",
+    "datum": "2026-11-20"
+  },
+  {
+    "megnevezes": "Pécsi Csokoládé Fesztivál",
+    "helyszin": "Pécs, Széchenyi tér",
+    "leiras": "<div><h2>Édes élmények</h2><p>A Pécsi Csokoládé Fesztivál 2026-ban a csokoládé szerelmeseinek kínál kóstolókat, workshopokat és gyerekprogramokat. Helyi és nemzetközi csokoládékészítők mutatják be termékeiket.</p></div>",
+    "datum": "2026-02-15"
+  },
+  {
+    "megnevezes": "Győri Tavaszi Fesztivál",
+    "helyszin": "Győr, több helyszín",
+    "leiras": "A Győri Tavaszi Fesztivál 2026-ban kulturális programokkal, koncertekkel és kiállításokkal várja a látogatókat. A rendezvény a tavasz megünneplésére szolgál.",
+    "datum": "2026-04-05"
+  },
+  {
+    "megnevezes": "Miskolci Sörfesztivál",
+    "helyszin": "Miskolc, Népkert",
+    "leiras": "<div><h2>Sör és zene</h2><p>A Miskolc Népkert 2025-ben megrendezett eseménye.</p></div>",
+    "datum": "2025-06-10"
+  },
+  {
+    "megnevezes": "Siófoki Nyári Éjszakák",
+    "helyszin": "Siófok, Petőfi sétány",
+    "leiras": "A Siófoki Nyári Éjszakák 2026-ban szabadtéri koncertekkel és gasztronómiai programokkal várja a Balaton-parti látogatókat.",
+    "datum": "2026-07-15"
+  },
+  {
+    "megnevezes": "Kecskeméti Barackfesztivál",
+    "helyszin": "Kecskemét, Főtér",
+    "leiras": "<div><h2>Barack és hagyomány</h2><p>A Kecskeméti Barackfesztivál 2026-ban a kecskeméti barackot és pálinkát ünnepli. Kóstolók, koncertek és családi programok várják a látogatókat.</p></div>",
+    "datum": "2026-07-05"
+  },
+  {
+    "megnevezes": "Veszprémi Kabóca Bábfesztivál",
+    "helyszin": "Veszprém, Óváros tér",
+    "leiras": "A Veszprémi Kabóca Bábfesztivál 2026-ban bábszínházi előadásokkal és családi programokkal várja a gyerekeket és szüleiket.",
+    "datum": "2026-06-20"
+  },
+  {
+    "megnevezes": "Soproni Adventi Vásár",
+    "helyszin": "Sopron, Főtér",
+    "leiras": "<div><h2>Ünnepi fények</h2><p>A Soproni Adventi Vásár 2026-ban kézműves termékekkel, forralt borral és adventi koncertekkel várja a látogatókat.</p></div>",
+    "datum": "2026-12-05"
+  },
+  {
+    "megnevezes": "Budapesti Nemzetközi Dokumentumfilm Fesztivál",
+    "helyszin": "Budapest, Toldi Mozi",
+    "leiras": "A Budapesti Nemzetközi Dokumentumfilm Fesztivál 2026-ban a világ legjobb dokumentumfilmjeit mutatja be. Vetítések, közönségtalálkozók és szakmai beszélgetések.",
+    "datum": "2026-03-15"
+  },
+  {
+    "megnevezes": "Szegedi Ifjúsági Napok",
+    "helyszin": "Szeged, Partfürdő",
+    "leiras": "<div><h2>Fiatalok fesztiválja</h2><p>A Szegedi Ifjúsági Napok 2026-ban zenei koncertekkel, sportprogramokkal és bulikkal várja a fiatalokat a Tisza-parton.</p></div>",
+    "datum": "2026-08-25"
+  },
+  {
+    "megnevezes": "Debreceni Borkóstoló",
+    "helyszin": "Debrecen, Nagyerdei Stadion",
+    "leiras": "A Debrecenben megrendezett Borkóstoló 2025-ben a magyar borokat helyezi középpontba. Borkóstolók, gasztroprogramok és élő zene várja a látogatókat.",
+    "datum": "2025-05-15"
+  },
+  {
+    "megnevezes": "Pécsi Tavaszi Vásár",
+    "helyszin": "Pécs, Széchenyi tér",
+    "leiras": "A Pécsi Tavaszi Vásárban kézműves termékekkel, gasztronómiai kínálattal és kulturális programokkal köszöntik a tavaszt.",
+    "datum": "2025-04-15"
+  },
+  {
+    "megnevezes": "Budapesti Kézműves Piac",
+    "helyszin": "Budapest, Erzsébet tér",
+    "leiras": "<div><h2>Kézműves kincsek</h2><p>A Budapesti Kézműves Piac 2026-ban helyi kézművesek termékeit kínálja, emellett gyerekprogramok és élő zene szórakoztatja a látogatókat.</p></div>",
+    "datum": "2026-05-25"
+  }
+]

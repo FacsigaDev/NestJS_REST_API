@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2017",
+    "outDir": "./dist", // Kimenet a dist mappába
+    "rootDir": "./src", // Forrás a src mappából
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "strict": true,
+    "strictPropertyInitialization": false, // Kikapcsolása
+    "types": ["node", "jest"] // Fontos: jest típusok hozzáadása
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

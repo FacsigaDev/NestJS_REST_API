@@ -1,0 +1,1541 @@
+{
+	"info": {
+		"_postman_id": "17c08bd0-4fad-4a65-871b-7b498034b539",
+		"name": "NestJS REST API",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" width=\"2162\" height=\"1530\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20119948"
+	},
+	"item": [
+		{
+			"name": "szemelyek",
+			"item": [
+				{
+					"name": "Minden személy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Minden személy lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek?szemely_keresztnev=András",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"query": [
+								{
+									"key": "szemely_keresztnev",
+									"value": "András"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott személy (id)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek/87",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"87"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott személy (email)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek/email/kis.fonok@nincs.hu",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"email",
+								"kis.fonok@nincs.hu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott személy (felhasznalonev)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek/email/kis.fonok@nincs.hu",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"email",
+								"kis.fonok@nincs.hu"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott személy (profil)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek/profil/me",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"profil",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Személy törlése",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}szemelyek/501",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"501"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Személy módosítása PATCH",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"szemely_keresztnev\": \"Miklós2\",\n    \"szemely_szuletesi_datum\": null,\n    \"szemely_vegzettseg\": \"felsőfok\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}szemelyek/502",
+							"host": [
+								"{{base_url}}szemelyek"
+							],
+							"path": [
+								"502"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "hirek",
+			"item": [
+				{
+					"name": "Minden hír",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Minden hír lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}hirek",
+							"host": [
+								"{{base_url}}hirek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott hír",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott hír lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}hirek/31",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hír rögzítése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hírek rögzítése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek",
+							"host": [
+								"{{base_url}}hirek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hír módosítása",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hír módosítása\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír - módosítva\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek/101",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hír törlése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hír törlése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír - módosítva\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek/101",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "esemenyek",
+			"item": [
+				{
+					"name": "Minden esemény",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Minden esemény lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}esemenyek",
+							"host": [
+								"{{base_url}}esemenyek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott esemeny",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott hír lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}hirek/31",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Esemény rögzítése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Esemény rögzítése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}esemenyek",
+							"host": [
+								"{{base_url}}esemenyek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Esemény módosítása",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Esemény módosítása\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír - módosítva\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}esemeny/101",
+							"host": [
+								"{{base_url}}esemeny"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Esemény törlése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hír törlése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír - módosítva\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek/101",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "telepulesek",
+			"item": [
+				{
+					"name": "Minden telepules",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Minden hír lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}hirek",
+							"host": [
+								"{{base_url}}hirek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott telepules",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott település lekérése ID alapján\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}telepulesek/31",
+							"host": [
+								"{{base_url}}telepulesek"
+							],
+							"path": [
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Települések irányítószam alapján",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott település lekérése ID alapján\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}telepulesek/31",
+							"host": [
+								"{{base_url}}telepulesek"
+							],
+							"path": [
+								"31"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Telepules rögzítése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hírek rögzítése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek",
+							"host": [
+								"{{base_url}}hirek"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Település módosítása PUT",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Település módosítása - PUT\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"telepules_varos\": \"Új település - módosítva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}telepulesek/3484",
+							"host": [
+								"{{base_url}}telepulesek"
+							],
+							"path": [
+								"3484"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Település módosítása PATCH",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Hír módosítása\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hir_cim\": \"Teszt hír - módosítva\",\r\n    \"hir_tartalom\": \"Ez egy rövid hír\",\r\n    \"hir_datum\": \"2025-06-27\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}hirek/101",
+							"host": [
+								"{{base_url}}hirek"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Teleülés törlése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Zelepülés törlése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}telepulesek/3484",
+							"host": [
+								"{{base_url}}telepulesek"
+							],
+							"path": [
+								"3484"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "feliratkozasok",
+			"item": [
+				{
+					"name": "Minden feliratkozás",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Minden feliratkozas lekérése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}feliratkozasok",
+							"host": [
+								"{{base_url}}feliratkozasok"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott feliratkozás",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Adott személy eseményei",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott személy eseményei\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}feliratkozasok/szemely/2",
+							"host": [
+								"{{base_url}}feliratkozasok"
+							],
+							"path": [
+								"szemely",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Adott esemény személyei",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Adott esemény személyei\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}feliratkozasok/esemeny/10",
+							"host": [
+								"{{base_url}}feliratkozasok"
+							],
+							"path": [
+								"esemeny",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feliratkozás létrehozása",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Feliratkozás létrehozása\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"feliratkozas_szemely_id\": 54,\r\n    \"feliratkozas_esemeny_id\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}feliratkozasok",
+							"host": [
+								"{{base_url}}feliratkozasok"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Feliratkozás törlése",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Feliratkozás törlése\", function () {\r",
+									"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"feliratkozas_szemely_id\": 54,\r\n    \"feliratkozas_esemeny_id\": 13\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}feliratkozasok/101",
+							"host": [
+								"{{base_url}}feliratkozasok"
+							],
+							"path": [
+								"101"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tesztadatok",
+			"item": [
+				{
+					"name": "Tesztadatok létrehozása",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"count\": 500\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}tesztadatok/tesztadatokletrehozasa",
+							"host": [
+								"{{base_url}}tesztadatok"
+							],
+							"path": [
+								"tesztadatokletrehozasa"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Tesztadatok törlése",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \n    \"szemely_jelszo\": \"admin\"\n}"
+						},
+						"url": {
+							"raw": "{{base_url}}tesztadatok/tesztadatokletrehozasa",
+							"host": [
+								"{{base_url}}tesztadatok"
+							],
+							"path": [
+								"tesztadatokletrehozasa"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bejelentkezés",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Bejelentkezés\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							"",
+							"// A válasz JSON szövegének objektummá alakítása",
+							"//var jsonData = JSON.parse(responseBody); //a responseBody elavult, nem támogatott",
+							"var jsonData = pm.response.json();",
+							"",
+							"// A token elmentése egy environment változóba 'token' néven",
+							"pm.collectionVariables.set(\"token\", jsonData.access_token);",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"szemely_felhasznalonev\": \"admin\",\n    \"szemely_jelszo\": \"admin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/bejelentkezes",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"bejelentkezes"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Jelszó módosítása",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Jelszó módosítása\", function () {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"szemely_felhasznalonev\": \"user\",\n    \"szemely_jelszo\": \"user2\",\n    \"szemely_ujjelszo\": \"user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/jelszomodositas",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"jelszomodositas"
+					]
+				},
+				"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+			},
+			"response": []
+		},
+		{
+			"name": "Regisztráció (lakcímmel)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Regisztráció\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"szemely_vezeteknev\": \"Kovács\",\n    \"szemely_keresztnev\": \"Miklós\",\n    \"szemely_szuletesi_datum\": \"1968-08-29\",\n    \"szemely_vegzettseg\": \"alapfok\",\n    \"szemely_email\": \"kovacs.miklos@nincs.hu\",\n    \"szemely_telefon\": \"06309218537\",\n    \"szemely_felhasznalonev\": \"Kovacs.Miklos68\",\n    \"szemely_jelszo\": \"Kovacs.Miklos68\",\n    \"szemely_cimek\": [\n        {\n            \"cim_tipus\": \"állandó\",\n            \"cim_iranyitoszam\": \"3271\",\n            \"cim_varos\": \"Visonta\",\n            \"cim_utca\": \"Petőfi Sándor utca 58.\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}auth/regisztracio",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"regisztracio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token frissítése",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Token frissítése\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([200]);\r",
+							"});\r",
+							"\r",
+							"// A válasz JSON szövegének objektummá alakítása\r",
+							"//var jsonData = JSON.parse(responseBody); //a responseBody elavult, nem támogatott\r",
+							"var jsonData = pm.response.json();\r",
+							"\r",
+							"// A token elmentése egy environment változóba 'token' néven\r",
+							"pm.collectionVariables.set(\"token\", jsonData.access_token);\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}auth/tokenfrissites",
+					"host": [
+						"{{base_url}}auth"
+					],
+					"path": [
+						"tokenfrissites"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/",
+			"type": "string"
+		}
+	]
+}

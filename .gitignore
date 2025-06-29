@@ -1,24 +1,53 @@
-# Nestjs specific
-/dist
-/node_modules
-/build
-/tmp
+# Node.js és npm
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json  # vagy yarn.lock, ha Yarn-t használsz
 
-# Logs
-logs
+# Build és dist mappák
+dist/
+build/
+
+# Környezeti változók és érzékeny adatok
+!.env          # Kivételesen, mivel ez egy iskolai project, valódi érzékeny adatot nem tartalmaz
+!.env.*        # Kivételesen, mivel ez egy iskolai project, valódi érzékeny adatot nem tartalmaz
+!.env.example  # Ha van példa .env fájl, azt tartsd meg
+
+# IDE és szerkesztő specifikus fájlok
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Tesztelési és coverage fájlok
+coverage/
+*.lcov
+
+# Ideiglenes fájlok
 *.log
-npm-debug.log*
-pnpm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+*.pid
+*.seed
+*.pid.lock
+tmp/
 
-# dotenv environment variable files
-.env
-.env.development
-.env.test
-.env.production
+# MacOS specifikus
+.DS_Store
 
-# temp directory
-.temp
-.tmp
+# Windows specifikus
+Thumbs.db
+ehthumbs.db
+
+# TypeORM-specifikus
+# Migrációs SQL dumpok vagy ideiglenes adatbázis fájlok, ha használsz ilyet
+*.sql
+*.sqlite
+
+# Egyéb
+*.bak
+*.gho
+*.orig
+*.tmp
+*.backup
