@@ -5,9 +5,9 @@
 
 REST API személyek, címek, események, feliratkozások, hírek és települések kezelésére
 
-```
+
 [Dokumentáció HTML formátumban](docs/NestJS_REST_API.html)
-```
+
 
 Base URLs:
 
