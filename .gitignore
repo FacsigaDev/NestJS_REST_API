@@ -43,7 +43,7 @@ ehthumbs.db
 # TypeORM-specifikus
 # Migrációs SQL dumpok vagy ideiglenes adatbázis fájlok, ha használsz ilyet
 *.sql
-*.sqlite
+#*.sqlite
 
 # Egyéb
 *.bak
