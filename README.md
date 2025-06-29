@@ -9,7 +9,9 @@ REST API személyek, címek, események, feliratkozások, hírek és település
 [Dokumentáció HTML formátumban](docs/NestJS_REST_API.html)
 
 
-Base URLs:
+Base URL: http://localhost:3000
+Swagger dokumentáció: http://localhost:3000/api
+
 
 # Authentication
 
