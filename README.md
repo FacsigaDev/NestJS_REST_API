@@ -10,6 +10,7 @@ REST API személyek, címek, események, feliratkozások, hírek és település
 
 
 Base URL: http://localhost:3000
+
 Swagger dokumentáció: http://localhost:3000/api
 
 
