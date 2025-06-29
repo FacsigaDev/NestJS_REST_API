@@ -6,7 +6,7 @@
 REST API személyek, címek, események, feliratkozások, hírek és települések kezelésére
 
 
-[Dokumentáció HTML formátumban](https://<username>.github.io/<repository>/NestJS_REST_API.html)
+[Dokumentáció HTML formátumban](https://FacsigaDev.github.io/<repository>/NestJS_REST_API.html)
 
 
 Base URL: http://localhost:3000
