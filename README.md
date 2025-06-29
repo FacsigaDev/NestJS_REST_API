@@ -1,7 +1,3 @@
-# NestJS_REST_API
-
----
-
 <!-- Generator: Widdershins v4.0.1 -->
 
 <h1 id="nestjs-keretrendszerrel-k-sz-tett-rest-api">NestJS keretrendszerrel készített REST API v1.0 - frontend fejlesztőknek tesztelési célból</h1>
